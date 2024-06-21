@@ -1,8 +1,7 @@
 function TodoItem() {
   return (
     <div>
-      <input type='checkbox' />
-      <span>Item 1</span>
+      <h1 className='text-3xl font-bold underline'>Task1</h1>
     </div>
   );
 }
