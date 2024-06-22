@@ -1,8 +1,16 @@
-function TodoItem() {
+interface Todo {
+  id: number;
+  taskName: string;
+  taskDesc: string;
+  completed: boolean;
+}
+function TodoItem(props: { itemObj: Todo }) {
   return (
-    <div>
-      <h1 className='text-3xl font-bold underline'>Task1</h1>
-    </div>
+    <li className='flex gap-4 py-2'>
+      <div className='flex items-center justify-between bg-yellow-500 p-4 my-2 rounded-lg shadow-lg'>
+        <h2 className='text-3xl font-bold'>{props.itemObj.taskName}</h2>
+      </div>
+    </li>
   );
 }
 
