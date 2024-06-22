@@ -1,4 +1,4 @@
-interface Todo {
+export interface Todo {
   id: number;
   taskName: string;
   taskDesc: string;

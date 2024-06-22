@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 
-function AddTodo() {
-  const [text, setText] = useState('');
+interface AddTodoProps {
+  onAddItem: (newTodo: Todo) => void;
+}
 
-  //   const handleSubmit = (e: React.FormEvent) => {
-  //     e.preventDefault();
-  //     if (text.trim()) {
-  //       addTodo(text);
-  //       setText('');
-  //     }
-  //   };
+interface Todo {
+  id: number;
+  taskName: string;
+  taskDesc: string;
+  completed: boolean;
+}
+
+function AddTodo({ onAddItem }: AddTodoProps) {
+  const [taskName, setTaskName] = useState('');
+  const [taskDesc, setTaskDesc] = useState('');
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('AddTodo.tsx handleSubmit() text:', text);
+    // console.log('AddTodo.tsx handleSubmit() text:', text);
+    if (!taskName.trim()) return;
+    const newTodo: Todo = {
+      id: Math.random(),
+      taskName: taskName,
+      taskDesc: taskDesc,
+      completed: false,
+    };
+    onAddItem(newTodo);
+    setTaskName('');
+    setTaskDesc('');
   };
 
   return (
@@ -20,8 +35,8 @@ function AddTodo() {
       <input
         type='text'
         className='border p-2 w-full'
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={taskName}
+        onChange={(e) => setTaskName(e.target.value)}
         placeholder='Add a new todo'
       />
       <button className='bg-blue-500 text-white p-2 w-full mt-2'>Add</button>
