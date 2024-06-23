@@ -11,19 +11,19 @@ function FilterButtons({
     <div className='flex justify-around mt-4'>
       <button
         onClick={() => setFilter(FilterType.All)}
-        className={`btn ${filter === 'all' ? 'btn-active' : ''}`}
+        className={`btn ${filter === FilterType.All ? 'btn-active' : ''}`}
       >
         All
       </button>
       <button
         onClick={() => setFilter(FilterType.Active)}
-        className={`btn ${filter === 'active' ? 'btn-active' : ''}`}
+        className={`btn ${filter === FilterType.Active ? 'btn-active' : ''}`}
       >
         Active
       </button>
       <button
         onClick={() => setFilter(FilterType.Completed)}
-        className={`btn ${filter === 'completed' ? 'btn-active' : ''}`}
+        className={`btn ${filter === FilterType.Completed ? 'btn-active' : ''}`}
       >
         Completed
       </button>

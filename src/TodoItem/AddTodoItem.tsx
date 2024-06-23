@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
+import { Todo } from '../TodoItem/TodoItem';
+import { getCurrentTime } from '../utilities/TimeConversions';
 
 interface AddTodoProps {
   onAddItem: (newTodo: Todo) => void;
 }
 
-interface Todo {
-  id: number;
-  taskName: string;
-  taskDesc: string;
-  completed: boolean;
-}
-
 function AddTodo({ onAddItem }: AddTodoProps) {
   const [taskName, setTaskName] = useState('');
-  const [taskDesc, setTaskDesc] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,12 +16,12 @@ function AddTodo({ onAddItem }: AddTodoProps) {
     const newTodo: Todo = {
       id: Math.random(),
       taskName: taskName,
-      taskDesc: taskDesc,
+
       completed: false,
+      createdDate: getCurrentTime(false),
     };
     onAddItem(newTodo);
     setTaskName('');
-    setTaskDesc('');
   };
 
   return (

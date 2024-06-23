@@ -3,6 +3,7 @@ import AddTodo from '../TodoItem/AddTodoItem';
 import { useEffect, useState } from 'react';
 import FilterButtons from './FilterItems';
 import { FilterType } from './FilterType';
+import TodoListHeader from './TodoListHeader';
 
 function TodoList() {
   const [todoItems, setTodoItems] = useState<Todo[]>(() => {
@@ -44,6 +45,7 @@ function TodoList() {
     <>
       <h1 className='text-4xl font-bold mb-4'>List of Todos</h1>
       <AddTodo onAddItem={handleAddTodoItem} />
+      <TodoListHeader />
       <ul>
         {filteredTodoItems.map((task) => (
           <TodoItem
