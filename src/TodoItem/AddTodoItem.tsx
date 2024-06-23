@@ -17,7 +17,7 @@ function AddTodo({ onAddItem }: AddTodoProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // console.log('AddTodo.tsx handleSubmit() text:', text);
+
     if (!taskName.trim()) return;
     const newTodo: Todo = {
       id: Math.random(),
