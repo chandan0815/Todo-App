@@ -1,8 +1,8 @@
 # Simple ToDo App
 
-This simple TODO app is build with React.js, Tailwindcss, vite
+This is a simple TODO app built with React.js, Tailwindcss, vite
 
-## Todo's
+## Features to be added
 
 - Use Modals during Create and Modify
 - Add additional animations for Deleting a task
