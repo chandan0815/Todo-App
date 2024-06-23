@@ -23,16 +23,10 @@ export default function TodoList() {
     setTodoItems(todoItems.filter((task) => task.id !== id));
   }
 
-  function handleEditTodoItem(
-    id: number,
-    newTaskName: string,
-    newDueDate: string
-  ) {
+  function handleEditTodoItem(id: number, newTaskName: string) {
     setTodoItems(
       todoItems.map((task) =>
-        task.id === id
-          ? { ...task, taskName: newTaskName, dueDate: newDueDate }
-          : task
+        task.id === id ? { ...task, taskName: newTaskName } : task
       )
     );
   }

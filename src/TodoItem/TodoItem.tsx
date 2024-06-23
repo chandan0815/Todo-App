@@ -12,15 +12,14 @@ export default function TodoItem(props: {
   itemObj: Todo;
   onDeleteItem: (id: number) => void;
   onStatusChange: (id: number) => void;
-  onEditItem: (id: number, newTaskName: string, newDueDate: string) => void;
+  onEditItem: (id: number, newTaskName: string) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTaskName, setNewTaskName] = useState(props.itemObj.taskName);
-  const [newDueDate, setNewDueDate] = useState(props.itemObj.dueDate);
 
   const handleEdit = () => {
     if (isEditing) {
-      props.onEditItem(props.itemObj.id, newTaskName, newDueDate);
+      props.onEditItem(props.itemObj.id, newTaskName);
     }
     setIsEditing(!isEditing);
   };
@@ -46,16 +45,26 @@ export default function TodoItem(props: {
         >
           {isEditing ? '💾' : '✏️'}
         </button>
+        {isEditing ? (
+          <input
+            type='text'
+            value={newTaskName}
+            onChange={(e) => setNewTaskName(e.target.value)}
+            className='border p-2 rounded mb-2'
+          />
+        ) : (
+          <div
+            className={`${
+              props.itemObj.completed ? 'font-light' : 'font-bold'
+            } text-3xl`}
+          >
+            {props.itemObj.taskName}
+          </div>
+        )}
 
-        <div
-          className={`${
-            props.itemObj.completed ? 'font-light' : 'font-bold'
-          } text-3xl`}
-        >
-          {props.itemObj.taskName}
-        </div>
-        <div>{props.itemObj.createdDate}</div>
         <div>{props.itemObj.dueDate}</div>
+        <div>{props.itemObj.createdDate}</div>
+
         <button
           className='bg-red-500 text-white p-2 rounded-lg'
           onClick={() => props.onDeleteItem(props.itemObj.id)}
