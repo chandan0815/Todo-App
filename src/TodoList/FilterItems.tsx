@@ -1,6 +1,6 @@
 import { FilterType } from './FilterType';
 
-function FilterButtons({
+export default function FilterButtons({
   filter,
   setFilter,
 }: {
@@ -30,5 +30,3 @@ function FilterButtons({
     </div>
   );
 }
-
-export default FilterButtons;

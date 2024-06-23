@@ -1,4 +1,4 @@
-function TodoListHeader() {
+export default function TodoListHeader() {
   return (
     <div className='flex justify-around mt-4'>
       <div className='flex gap-4'>Status</div>
@@ -8,5 +8,3 @@ function TodoListHeader() {
     </div>
   );
 }
-
-export default TodoListHeader;
