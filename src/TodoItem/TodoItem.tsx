@@ -39,12 +39,7 @@ export default function TodoItem(props: {
         >
           {props.itemObj.completed ? '✔' : '✓'}
         </button>
-        <button
-          onClick={handleEdit}
-          className='bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center ml-2'
-        >
-          {isEditing ? '💾' : '✏️'}
-        </button>
+
         {isEditing ? (
           <input
             type='text'
@@ -64,7 +59,12 @@ export default function TodoItem(props: {
 
         <div>{props.itemObj.dueDate}</div>
         <div>{props.itemObj.createdDate}</div>
-
+        <button
+          onClick={handleEdit}
+          className='bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center ml-2'
+        >
+          {isEditing ? '💾' : '✏️'}
+        </button>
         <button
           className='bg-red-500 text-white p-2 rounded-lg'
           onClick={() => props.onDeleteItem(props.itemObj.id)}

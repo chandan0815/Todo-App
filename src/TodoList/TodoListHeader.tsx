@@ -1,10 +1,11 @@
 export default function TodoListHeader() {
   return (
-    <div className='flex justify-around mt-4'>
-      <div className='flex gap-4'>Status</div>
-      <div className='flex gap-4'>Task name</div>
-      <div className='flex gap-4'>Create Date</div>
-      <div className='flex gap-4'>Due Date</div>
+    <div className='flex bg-gray-200 p-4 rounded-t-lg'>
+      <div className='flex-1 text-center'>Status</div>
+      <div className='flex-1 text-center'>Task name</div>
+      <div className='flex-1 text-center'>Due Date</div>
+      <div className='flex-1 text-center'>Create Date</div>
+      <div className='w-16 text-center'>Actions</div>
     </div>
   );
 }
