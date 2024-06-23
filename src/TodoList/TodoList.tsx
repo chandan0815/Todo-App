@@ -1,6 +1,6 @@
 import TodoItem from '../TodoItem/TodoItem.tsx';
-import AddTodo from '../TodoItem/AddTodoItem.tsx';
 import { Todo } from '../TodoItem/TodoItem';
+import AddTodo from '../TodoItem/AddTodoItem.tsx';
 import { useState } from 'react';
 
 function TodoList() {
@@ -10,6 +10,13 @@ function TodoList() {
   }
   function handleDeleteTodoItem(id: number) {
     setTodoItems(todoItems.filter((task) => task.id !== id));
+  }
+  function handleStatusChange(id: number) {
+    setTodoItems(
+      todoItems.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
   }
   return (
     <>
@@ -21,6 +28,7 @@ function TodoList() {
             key={task.id}
             itemObj={task}
             onDeleteItem={handleDeleteTodoItem}
+            onStatusChange={handleStatusChange}
           />
         ))}
       </ul>
