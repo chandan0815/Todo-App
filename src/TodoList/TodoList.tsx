@@ -1,11 +1,15 @@
 import TodoItem, { Todo } from '../TodoItem/TodoItem';
 import AddTodo from '../TodoItem/AddTodoItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterButtons from './FilterItems';
 import { FilterType } from './FilterType';
 
 function TodoList() {
-  const [todoItems, setTodoItems] = useState<Todo[]>([]);
+  const [todoItems, setTodoItems] = useState<Todo[]>(() => {
+    // Load initial state from localStorage if available
+    const savedTodos = localStorage.getItem('todos');
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
   const [filter, setFilter] = useState<
     FilterType.All | FilterType.Active | FilterType.Completed
   >(FilterType.All);
@@ -30,6 +34,11 @@ function TodoList() {
     if (filter === FilterType.Completed) return task.completed;
     return true;
   });
+
+  //save todoItems to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todoItems));
+  }, [todoItems]);
 
   return (
     <>
