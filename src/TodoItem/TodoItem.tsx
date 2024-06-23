@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export interface Todo {
   id: number;
   taskName: string;
@@ -6,14 +8,25 @@ export interface Todo {
   dueDate?: string;
 }
 
-function TodoItem(props: {
+export default function TodoItem(props: {
   itemObj: Todo;
   onDeleteItem: (id: number) => void;
   onStatusChange: (id: number) => void;
+  onEditItem: (id: number, newTaskName: string, newDueDate: string) => void;
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTaskName, setNewTaskName] = useState(props.itemObj.taskName);
+  const [newDueDate, setNewDueDate] = useState(props.itemObj.dueDate);
+
+  const handleEdit = () => {
+    if (isEditing) {
+      props.onEditItem(props.itemObj.id, newTaskName, newDueDate);
+    }
+    setIsEditing(!isEditing);
+  };
+
   return (
     <li className='flex gap-4 py-2 '>
-      {/* <div className='flex items-center justify-between bg-yellow-500 p-1 my-1 rounded-lg shadow-lg w-full'> */}
       <div
         className={`${
           props.itemObj.completed ? 'bg-yellow-300' : 'bg-yellow-500'
@@ -22,10 +35,16 @@ function TodoItem(props: {
         <button
           className={`${
             props.itemObj.completed ? 'bg-green-500' : 'bg-yellow-500'
-          } text-white p-2 rounded-lg`}
+          } text-white p-2 rounded-full`}
           onClick={() => props.onStatusChange(props.itemObj.id)}
         >
           {props.itemObj.completed ? '✔' : '✓'}
+        </button>
+        <button
+          onClick={handleEdit}
+          className='bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center ml-2'
+        >
+          {isEditing ? '💾' : '✏️'}
         </button>
 
         <div
@@ -36,6 +55,7 @@ function TodoItem(props: {
           {props.itemObj.taskName}
         </div>
         <div>{props.itemObj.createdDate}</div>
+        <div>{props.itemObj.dueDate}</div>
         <button
           className='bg-red-500 text-white p-2 rounded-lg'
           onClick={() => props.onDeleteItem(props.itemObj.id)}
@@ -46,5 +66,3 @@ function TodoItem(props: {
     </li>
   );
 }
-
-export default TodoItem;

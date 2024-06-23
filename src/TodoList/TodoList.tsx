@@ -5,7 +5,7 @@ import FilterButtons from './FilterItems';
 import { FilterType } from './FilterType';
 import TodoListHeader from './TodoListHeader';
 
-function TodoList() {
+export default function TodoList() {
   const [todoItems, setTodoItems] = useState<Todo[]>(() => {
     // Load initial state from localStorage if available
     const savedTodos = localStorage.getItem('todos');
@@ -14,6 +14,7 @@ function TodoList() {
   const [filter, setFilter] = useState<
     FilterType.All | FilterType.Active | FilterType.Completed
   >(FilterType.All);
+
   function handleAddTodoItem(newTodo: Todo) {
     setTodoItems([...todoItems, newTodo]);
   }
@@ -21,6 +22,21 @@ function TodoList() {
   function handleDeleteTodoItem(id: number) {
     setTodoItems(todoItems.filter((task) => task.id !== id));
   }
+
+  function handleEditTodoItem(
+    id: number,
+    newTaskName: string,
+    newDueDate: string
+  ) {
+    setTodoItems(
+      todoItems.map((task) =>
+        task.id === id
+          ? { ...task, taskName: newTaskName, dueDate: newDueDate }
+          : task
+      )
+    );
+  }
+
   function handleStatusChange(id: number) {
     setTodoItems(
       todoItems.map((task) =>
@@ -53,6 +69,7 @@ function TodoList() {
             itemObj={task}
             onDeleteItem={handleDeleteTodoItem}
             onStatusChange={handleStatusChange}
+            onEditItem={handleEditTodoItem}
           />
         ))}
       </ul>
@@ -60,5 +77,3 @@ function TodoList() {
     </>
   );
 }
-
-export default TodoList;
