@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Todo } from './TodoItem';
 import { getCurrentTime, parseDate } from '../utilities/timeProcessing';
+import CustomDateInput from './CustomDateInput';
 
 interface AddTodoProps {
   onAddItem: (newTodo: Todo) => void;
@@ -39,14 +40,7 @@ export default function AddTodo({ onAddItem }: AddTodoProps) {
         onChange={(e) => setTaskName(e.target.value)}
         placeholder='Add a new todo'
       />
-      <div className='relative'>
-        <input
-          type='date'
-          className='border p-2 rounded'
-          value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)}
-        />
-      </div>
+      <CustomDateInput value={dueDate} onChange={setDueDate} />
       <button className='bg-blue-500 text-white p-2 w-full '>✚ Add task</button>
     </form>
   );
