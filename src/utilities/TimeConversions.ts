@@ -19,6 +19,9 @@ export const getCurrentTime = (time: boolean) => {
 
 export const parseDate = (date: string, inputSeparator: string) => {
   // converts a date string in the format YYYY-MM-DD to DD/MM/YYYY to format
+  if (!date) return '';
+  if (date === 'Invalid Date') return '';
+  if (date === 'undefined') return '';
   const [year, month, day] = date.split(inputSeparator);
   return `${day}${separator}${month}${separator}${year}`;
 };

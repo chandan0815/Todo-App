@@ -34,7 +34,7 @@ export default function TodoItem(props: {
         <button
           className={`${
             props.itemObj.completed ? 'bg-green-500' : 'bg-yellow-500'
-          } text-white p-2 rounded-full`}
+          } text-white p-2 rounded-full flex-none w-10 text-center`}
           onClick={() => props.onStatusChange(props.itemObj.id)}
         >
           {props.itemObj.completed ? '✔' : '✓'}
@@ -51,13 +51,13 @@ export default function TodoItem(props: {
           <div
             className={`${
               props.itemObj.completed ? 'font-light' : 'font-bold'
-            } text-3xl`}
+            } text-3xl flex-initial text-center`}
           >
             {props.itemObj.taskName}
           </div>
         )}
 
-        <div>{props.itemObj.dueDate}</div>
+        <div className='flex-none text-center'>{props.itemObj.dueDate}</div>
         <div>{props.itemObj.createdDate}</div>
         <button
           onClick={handleEdit}
