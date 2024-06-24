@@ -1,6 +1,6 @@
-//gives the current time in the format DD:MM:YYYY HH:MM:SS or DD:MM:YYYY based on the argument passed
 const separator = '/';
 export const getCurrentTime = (time: boolean) => {
+  //gives the current time in the format DD:MM:YYYY HH:MM:SS or DD:MM:YYYY based on the argument passed
   const date = new Date();
   const day = date.getDate();
   const month = date.getMonth() + 1;

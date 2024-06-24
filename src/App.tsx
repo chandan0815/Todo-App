@@ -3,11 +3,9 @@ import './App.css';
 
 function App() {
   return (
-    <>
-      <div>
-        <TodoList />
-      </div>
-    </>
+    <div>
+      <TodoList />
+    </div>
   );
 }
 
