@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import { FilterType } from './FilterType';
+import { FilterType } from './filterTypes';
 
 export default function FilterButtons({
   filter,

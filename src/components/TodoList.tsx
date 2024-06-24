@@ -1,8 +1,8 @@
-import TodoItem, { Todo } from '../TodoItem/TodoItem';
-import AddTodo from '../TodoItem/AddTodoItem';
+import TodoItem, { Todo } from './TodoItem';
+import AddTodo from './AddTodoItem';
 import { useEffect, useState } from 'react';
 import FilterButtons from './FilterItems';
-import { FilterType } from './FilterType';
+import { FilterType } from './filterTypes';
 
 export default function TodoList() {
   const [todoItems, setTodoItems] = useState<Todo[]>(() => {
