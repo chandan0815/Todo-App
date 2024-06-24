@@ -25,21 +25,22 @@ export default function TodoItem(props: {
   };
 
   return (
-    <li className='flex gap-4 py-2 '>
-      <div
-        className={`${
-          props.itemObj.completed ? 'bg-yellow-300' : 'bg-yellow-500'
-        } flex items-center justify-between p-1 my-1 rounded-lg shadow-lg w-full`}
-      >
+    <tr
+      className={`${
+        props.itemObj.completed ? 'bg-yellow-300' : 'bg-yellow-500'
+      }  items-center justify-between p-1 mb-1 rounded-lg shadow-lg w-full`}
+    >
+      <td className='p-4 text-center'>
         <button
           className={`${
             props.itemObj.completed ? 'bg-green-500' : 'bg-yellow-500'
-          } text-white p-2 rounded-full flex-none w-10 text-center`}
+          } text-white rounded-full w-8 h-8 flex items-center justify-center`}
           onClick={() => props.onStatusChange(props.itemObj.id)}
         >
           {props.itemObj.completed ? '✔' : '✓'}
         </button>
-
+      </td>
+      <td className='p-4 text-center'>
         {isEditing ? (
           <input
             type='text'
@@ -48,17 +49,24 @@ export default function TodoItem(props: {
             className='border p-2 rounded mb-2'
           />
         ) : (
-          <div
+          <span
             className={`${
-              props.itemObj.completed ? 'font-light' : 'font-bold'
-            } text-3xl flex-initial text-center`}
+              props.itemObj.completed ? 'font-light line-through' : 'font-bold'
+            } text-3xl text-center`}
           >
             {props.itemObj.taskName}
-          </div>
+          </span>
         )}
-
-        <div className='flex-none text-center'>{props.itemObj.dueDate}</div>
-        <div>{props.itemObj.createdDate}</div>
+      </td>
+      <td className='p-4 text-center'>
+        <span className='text-sm text-gray-700'>{props.itemObj.dueDate}</span>
+      </td>
+      <td className='p-4 text-center'>
+        <span className='text-sm text-gray-700'>
+          {props.itemObj.createdDate}
+        </span>
+      </td>
+      <td className='p-4 text-center flex items-center justify-center space-x-2'>
         <button
           onClick={handleEdit}
           className='bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center ml-2'
@@ -66,12 +74,12 @@ export default function TodoItem(props: {
           {isEditing ? '💾' : '✏️'}
         </button>
         <button
-          className='bg-red-500 text-white p-2 rounded-lg'
+          className='bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center ml-2'
           onClick={() => props.onDeleteItem(props.itemObj.id)}
         >
           ❌
         </button>
-      </div>
-    </li>
+      </td>
+    </tr>
   );
 }

@@ -47,7 +47,6 @@ export default function AddTodo({ onAddItem }: AddTodoProps) {
           onChange={(e) => setDueDate(e.target.value)}
         />
       </div>
-
       <button className='bg-blue-500 text-white p-2 w-full '>✚ Add task</button>
     </form>
   );

@@ -3,7 +3,6 @@ import AddTodo from '../TodoItem/AddTodoItem';
 import { useEffect, useState } from 'react';
 import FilterButtons from './FilterItems';
 import { FilterType } from './FilterType';
-import TodoListHeader from './TodoListHeader';
 
 export default function TodoList() {
   const [todoItems, setTodoItems] = useState<Todo[]>(() => {
@@ -52,22 +51,34 @@ export default function TodoList() {
   }, [todoItems]);
 
   return (
-    <>
-      <h1 className='text-4xl font-bold mb-4'>List of Todos</h1>
-      <AddTodo onAddItem={handleAddTodoItem} />
-      <TodoListHeader />
-      <ul>
-        {filteredTodoItems.map((task) => (
-          <TodoItem
-            key={task.id}
-            itemObj={task}
-            onDeleteItem={handleDeleteTodoItem}
-            onStatusChange={handleStatusChange}
-            onEditItem={handleEditTodoItem}
-          />
-        ))}
-      </ul>
-      <FilterButtons filter={filter} setFilter={setFilter} />
-    </>
+    <div className='min-h-screen bg-gray-100'>
+      <div className='container mx-auto p-4'>
+        <h1 className='text-4xl font-bold mb-4'>List of Todos</h1>
+        <AddTodo onAddItem={handleAddTodoItem} />
+        <table className='min-w-full  rounded-lg shadow-lg'>
+          <thead>
+            <tr className='bg-gray-200'>
+              <th className='p-4 text-center'>Status</th>
+              <th className='p-4 text-center'>Task name</th>
+              <th className='p-4 text-center'>Due Date</th>
+              <th className='p-4 text-center'>Create Date</th>
+              <th className='p-4 text-center'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredTodoItems.map((task) => (
+              <TodoItem
+                key={task.id}
+                itemObj={task}
+                onDeleteItem={handleDeleteTodoItem}
+                onStatusChange={handleStatusChange}
+                onEditItem={handleEditTodoItem}
+              />
+            ))}
+          </tbody>
+        </table>
+        <FilterButtons filter={filter} setFilter={setFilter} />
+      </div>
+    </div>
   );
 }
