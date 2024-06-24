@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Todo } from '../TodoItem/TodoItem';
-import { getCurrentTime, parseDate } from '../utilities/timeConversions';
+import { getCurrentTime, parseDate } from '../utilities/timeProcessing';
 
 interface AddTodoProps {
   onAddItem: (newTodo: Todo) => void;

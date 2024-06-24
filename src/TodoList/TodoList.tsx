@@ -55,6 +55,7 @@ export default function TodoList() {
       <div className='container mx-auto p-4'>
         <h1 className='text-4xl font-bold mb-4'>List of Todos</h1>
         <AddTodo onAddItem={handleAddTodoItem} />
+        <FilterButtons filter={filter} setFilter={setFilter} />
         <table className='min-w-full  rounded-lg shadow-lg'>
           <thead>
             <tr className='bg-gray-200'>
@@ -77,7 +78,6 @@ export default function TodoList() {
             ))}
           </tbody>
         </table>
-        <FilterButtons filter={filter} setFilter={setFilter} />
       </div>
     </div>
   );

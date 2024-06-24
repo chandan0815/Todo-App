@@ -25,3 +25,9 @@ export const parseDate = (date: string, inputSeparator: string) => {
   const [year, month, day] = date.split(inputSeparator);
   return `${day}${separator}${month}${separator}${year}`;
 };
+
+export const getDateFromString = (date: string, inputSeparator: string) => {
+  // converts a date string in the format DD-MM-YYYY to Date object
+  const [day, month, year] = date.split(inputSeparator);
+  return new Date(+year, +month - 1, +day);
+};

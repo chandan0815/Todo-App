@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getDateFromString } from '../utilities/timeProcessing';
 
 export interface Todo {
   id: number;
@@ -22,6 +23,13 @@ export default function TodoItem(props: {
       props.onEditItem(props.itemObj.id, newTaskName);
     }
     setIsEditing(!isEditing);
+  };
+
+  const isOverdue = () => {
+    if (!props.itemObj.dueDate) return false;
+    const dueDate = getDateFromString(props.itemObj.dueDate, '/');
+    const currentDate = new Date();
+    return dueDate < currentDate;
   };
 
   return (
@@ -59,7 +67,13 @@ export default function TodoItem(props: {
         )}
       </td>
       <td className='p-4 text-center'>
-        <span className='text-sm text-gray-700'>{props.itemObj.dueDate}</span>
+        {isOverdue() ? (
+          <span className='text-red-500'>{props.itemObj.dueDate}</span>
+        ) : (
+          <span className='text-sm text-gray-700'>{props.itemObj.dueDate}</span>
+        )}
+
+        {/* <span className='text-sm text-gray-700'>{props.itemObj.dueDate}</span> */}
       </td>
       <td className='p-4 text-center'>
         <span className='text-sm text-gray-700'>
