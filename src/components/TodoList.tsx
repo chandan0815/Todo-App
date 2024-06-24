@@ -70,10 +70,10 @@ export default function TodoList() {
             {filteredTodoItems.map((task) => (
               <TodoItem
                 key={task.id}
-                itemObj={task}
-                onDeleteItem={handleDeleteTodoItem}
-                onStatusChange={handleStatusChange}
-                onEditItem={handleEditTodoItem}
+                item={task}
+                deleteItem={handleDeleteTodoItem}
+                statusChange={handleStatusChange}
+                editItem={handleEditTodoItem}
               />
             ))}
           </tbody>

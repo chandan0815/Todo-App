@@ -10,24 +10,24 @@ export interface Todo {
 }
 
 export default function TodoItem(props: {
-  itemObj: Todo;
-  onDeleteItem: (id: number) => void;
-  onStatusChange: (id: number) => void;
-  onEditItem: (id: number, newTaskName: string) => void;
+  item: Todo;
+  deleteItem: (id: number) => void;
+  statusChange: (id: number) => void;
+  editItem: (id: number, newTaskName: string) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [newTaskName, setNewTaskName] = useState(props.itemObj.taskName);
+  const [newTaskName, setNewTaskName] = useState(props.item.taskName);
 
   const handleEdit = () => {
     if (isEditing) {
-      props.onEditItem(props.itemObj.id, newTaskName);
+      props.editItem(props.item.id, newTaskName);
     }
     setIsEditing(!isEditing);
   };
 
   const isOverdue = () => {
-    if (!props.itemObj.dueDate) return false;
-    const dueDate = getDateFromString(props.itemObj.dueDate, '/');
+    if (!props.item.dueDate) return false;
+    const dueDate = getDateFromString(props.item.dueDate, '/');
     const currentDate = new Date();
     return dueDate < currentDate;
   };
@@ -35,17 +35,17 @@ export default function TodoItem(props: {
   return (
     <tr
       className={`${
-        props.itemObj.completed ? 'bg-yellow-300' : 'bg-yellow-500'
+        props.item.completed ? 'bg-yellow-300' : 'bg-yellow-500'
       }  items-center justify-between p-1 mb-1 rounded-lg shadow-lg w-full`}
     >
       <td className='p-4 text-center'>
         <button
           className={`${
-            props.itemObj.completed ? 'bg-green-500' : 'bg-yellow-500'
+            props.item.completed ? 'bg-green-500' : 'bg-yellow-500'
           } text-white rounded-full w-8 h-8 flex items-center justify-center`}
-          onClick={() => props.onStatusChange(props.itemObj.id)}
+          onClick={() => props.statusChange(props.item.id)}
         >
-          {props.itemObj.completed ? '✔' : '✓'}
+          {props.item.completed ? '✔' : '✓'}
         </button>
       </td>
       <td className='p-4 text-center'>
@@ -59,26 +59,22 @@ export default function TodoItem(props: {
         ) : (
           <span
             className={`${
-              props.itemObj.completed ? 'font-light line-through' : 'font-bold'
+              props.item.completed ? 'font-light line-through' : 'font-bold'
             } text-3xl text-center`}
           >
-            {props.itemObj.taskName}
+            {props.item.taskName}
           </span>
         )}
       </td>
       <td className='p-4 text-center'>
         {isOverdue() ? (
-          <span className='text-red-500'>{props.itemObj.dueDate}</span>
+          <span className='text-red-500'>{props.item.dueDate}</span>
         ) : (
-          <span className='text-sm text-gray-700'>{props.itemObj.dueDate}</span>
+          <span className='text-sm text-gray-700'>{props.item.dueDate}</span>
         )}
-
-        {/* <span className='text-sm text-gray-700'>{props.itemObj.dueDate}</span> */}
       </td>
       <td className='p-4 text-center'>
-        <span className='text-sm text-gray-700'>
-          {props.itemObj.createdDate}
-        </span>
+        <span className='text-sm text-gray-700'>{props.item.createdDate}</span>
       </td>
       <td className='p-4 text-center flex items-center justify-center space-x-2'>
         <button
@@ -89,7 +85,7 @@ export default function TodoItem(props: {
         </button>
         <button
           className='bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center ml-2'
-          onClick={() => props.onDeleteItem(props.itemObj.id)}
+          onClick={() => props.deleteItem(props.item.id)}
         >
           ❌
         </button>
